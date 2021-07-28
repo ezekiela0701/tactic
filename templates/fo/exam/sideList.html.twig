@@ -1,0 +1,26 @@
+{% if lessonPerChapters is empty %}
+	<div>
+		Aucun lecon a afficher
+	</div>
+{% else %}
+
+	<div
+		class="section-header">{# <h2>{{lessonPerChapters}}</h2> #}
+	</div>
+	{% for lesson in lessons %}
+		{{lesson.chapter}}
+		<li>
+			{# <a data-toggle="collapse" class="collapsed" href="#block{{lessonPerChapter.id}}">{{lessonPerChapter.chapter}} <i class="fa fa-minus-circle"></i></a> #}
+			{# <div id="block{{lessonPerChapter.id}}" class="collapse" data-parent="#faq-list"> #}
+				<div id="list"> <p>
+					<a href="{{path("fo_lesson",{'lessonslug': lesson.slug}) }}">{{lesson.title}}
+					</a>
+					{# {{render(controller(
+					        'App\\Controller\\fo\\LessonController::listLessonPerChapter',{'chapter': lessonPerChapter.chapter , 'subject': lessonPerChapter.subject}
+					    ))
+					}} #}
+				</p>
+			</div>
+		</li>
+	{% endfor %}
+{% endif %}

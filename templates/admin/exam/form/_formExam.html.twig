@@ -1,0 +1,34 @@
+{{ form_start(form_exam) }}
+    <div class="form-group mt-4">
+        <label>Classe de </label>
+         <select class="form-control" id="classschool" name="class" required>
+                <option  value="" disabled selected>Classe</option>
+            {% for classSchoolList in classSchoolLists %}
+                <option value="{{classSchoolList.id}}" >{{classSchoolList.name}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group mt-4">
+        <label>Matiere</label>
+        <select class="form-control" id="subjects" name="subject" required>
+            <option value="" disabled selected>Matiere</option>
+        </select>
+    </div>
+    <div class="form-group mt-4">
+        {{ form_row(form_exam.trimester) }}
+    </div>
+    <div class="form-group mt-4">
+        {{ form_row(form_exam.document) }}
+    </div>
+    <div class="form-group mt-4">
+        {{ form_row(form_exam.status) }}
+    </div>
+    
+    <div class="form-group mt-4">
+        {% if editMode %}
+		    <button type="submit" class="btn btn-success btn-block">Mettre à jour la liste</button>
+        {% else %}
+		    <button type="submit" class="btn btn-primary btn-block">Ajouter dans la liste</button>                
+        {% endif %}
+	</div>
+{{ form_end(form_exam) }}

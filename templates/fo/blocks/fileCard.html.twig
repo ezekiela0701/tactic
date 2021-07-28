@@ -1,0 +1,67 @@
+{# {% set custom_upload_path = upload_path|default('uploads/bdds') %} #}
+<div class="card card-figure">
+    <figure class="figure">
+        <div class="figure-attachment">
+             
+            {# {% if isFileTypeoff('image', file_name) == true %}
+                <img src="{{ asset(custom_upload_path ~ '/' ~ file_name) }}" alt="Card image cap" class="img-fluid">
+            {% else %}
+                <span class="fa-stack fa-lg">
+                    <i class="fa fa-square fa-stack-2x text-primary"></i>
+                    <i class="{{ getFileIcon(file_name) }} fa-stack-1x fa-inverse"></i>
+                </span>
+            {% endif %} #}
+        </div>
+        <figcaption class="figure-caption">
+            <ul class="list-inline d-flex text-muted mb-0">
+                <li class="list-inline-item text-truncate mr-auto">
+                 {% if app.user %}
+                    <a href="{{ path('generate.lesson.file', {'lessonslug': lessonslug, 'file': file_name}) }}" target="_blank" class="telecharger">
+                        <span style="margin-right: 5px"><i class="{{ getFileIcon(file_name) }}"></i></span>{{ file_name|length > 35 ? file_name|slice(0, 35) ~ '...' : file_name  }}
+                    </a>
+                    {# <a href="{{ path('generate.bdd.file', {'bddSlug': bddSlug, 'file': file_name}) }}" target="_blank" class="telecharger">
+                        <span style="margin-right: 5px"><i class="{{ getFileIcon(file_name) }}"></i></span>{{ file_name|length > 35 ? file_name|slice(0, 35) ~ '...' : file_name  }}
+                    </a> #}
+                 {% else %}
+                    <div class="col-md-12">
+                         <a>
+                            <span style="margin-right: 5px"><i class=""></i></span>{{ file_name|length > 35 ? file_name|slice(0, 35) ~ '...' : file_name  }}
+                            
+                        </a>
+                    </div>
+                    
+                    
+                {% endif %}
+                
+                    {#<a href="{{asset(custom_upload_path ~ '/' ~ file_name) }}" target="_blank" class="telecharger">
+                        <span style="margin-right: 5px"><i class="{{ getFileIcon(file_name) }}"></i></span>{{ file_name|length > 35 ? file_name|slice(0, 35) ~ '...' : file_name  }}
+                    </a>#}
+                </li>
+                {# {% if delete is defined %}
+                    {% if delete.allow|default(false) == true %}
+                        <li class="list-inline-item">
+                            <a id="{{ file_info.id }}" class="removeBtn" onclick="removeFile({{ file_info.id }});" data-remove-path="{{ delete.path }}" data-toggle="tooltip" data-placement="top" data-original-title="{{ 'components.delete'|trans }}">
+                                <i class="fas fa-trash text-danger"></i>
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endif %} #}
+            </ul>
+            {# {% if source_name is defined %}
+                <ul class="list-inline d-flex text-muted mb-0">
+                    <li class="list-inline-item text-truncate mr-auto">
+                        <a href="javascript:;"><i class="fas fa-archive"></i> {{ source_name|length > 35 ? source_name|slice(0, 35) ~ '...' : source_name  }}</a>
+                    </li>
+                </ul>
+            {% endif %}
+
+            {% if source_url is defined %}
+                <ul class="list-inline d-flex text-muted mb-0">
+                    <li class="list-inline-item text-truncate mr-auto">
+                        <a href="{{ source_url }}" target="_blank"><i class="fas fa-external-link-alt"></i> {{ source_url|length > 35 ? source_url|slice(0, 35) ~ '...' : source_url  }}</a>
+                    </li>
+                </ul>
+            {% endif %} #}
+        </figcaption>
+    </figure>
+</div>

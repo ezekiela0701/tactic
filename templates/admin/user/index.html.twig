@@ -1,0 +1,67 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Hello UserController!{% endblock %}
+
+{% block body %}
+<section class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item">
+							<a href="{{path('dashboard')}}">Home</a>
+						</li>
+						<li class="breadcrumb-item active">User</li>
+					</ol>
+				</div>
+				<div class="col-sm-6">
+					<a class="btn btn-primary float-sm-right" href="{{path('user_register')}}">Ajouter nouveau utilisateur</a>
+				</div>
+			</div>
+		</div>
+		<!-- /.container-fluid -->
+	</section>
+
+<div class="col-12">
+		<div class="card card-success">
+			<div class="card-header">
+				<h3 class="card-title">Listes des utilisateurs enregistrer</h3>
+			</div>
+			<div class="card-body">
+				<table id="userlist" class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<th>Nom et prenom</th>
+							<th>classe</th>
+							<th>Nom d'utilisateur</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for userList in userLists %}
+							<tr>
+								<td>{{userList.name}}</td>
+								<td>{{userList.firstname}}</td>
+								<td>{{userList.email}}</td>
+
+								<td>
+									{% if(userList.Roles[0] == "ROLE_ADMIN") %}
+										<button class="btn btn-sm btn-success">admin</small>
+									{% else %}
+									<a href="{{ path('user_updated', {'id': userList.id}) }}" class="btn btn-rounded btn-success" data-toggle="tooltip" data-placement="bottom">
+										<i class="m-r-10 fas fa-edit"></i>
+									</a> &nbsp;&nbsp;&nbsp;
+									<a href="{{ path('user_delete', {'id': userList.id}) }}" class="btn btn-rounded btn-danger" data-toggle="tooltip" data-placement="bottom">
+										<i class="m-r-10 mdi fas fa-trash"></i>
+									</a>
+									{% endif %}
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

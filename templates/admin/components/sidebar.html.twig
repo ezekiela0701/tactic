@@ -1,0 +1,178 @@
+<aside
+	class="main-sidebar sidebar-dark-primary elevation-4">
+	<!-- Brand Logo -->
+	<a
+		href="{{path('dashboard')}}" class="brand-link">
+		{# <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+				           style="opacity: .8"> #}
+		<span class="brand-text font-weight-light">TicTac Administrator</span>
+	</a>
+
+	<!-- Sidebar -->
+	<div
+		class="sidebar">
+
+		<!-- Sidebar Menu -->
+		<nav class="mt-2">
+
+			<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+				<li class="nav-header">Gestion page d'accueil
+				</li>
+				<li class="nav-item single-menu">
+					<a href="{{path('bo_presentation_List')}}" class="nav-link" id="bo-presentation-list">
+						<i class="nav-icon fas fas fa-bookmark"></i>
+						<p>
+							Présentation
+						</p>
+					</a>
+				</li>
+				<li class="nav-item single-menu">
+					<a href="{{path('bo_galery_List')}}" class="nav-link" id="bo-galery-List">
+						<i class="nav-icon fas fas fa-image"></i>
+						<p>
+							Galeries
+						</p>
+					</a>
+				</li>
+				<li class="nav-item single-menu">
+					<a href="{{path('bo_teacher')}}" class="nav-link" id="bo-teacher">
+						<i class="nav-icon fas fas fa-quote-right"></i>
+						<p>
+							Testimonials
+						</p>
+					</a>
+				</li>
+
+				<!-- <li class="nav-item single-menu" >
+							            <a href="{{path('bo_teacher')}}" class="nav-link" id="bo-teacher">
+							              <i class="nav-icon fas fas fa-edit"></i>
+							              <p>
+							                Prof
+							              </p>
+							            </a>
+							          </li> -->
+
+
+				<!-- Add icons to the links using the .nav-icon class
+							               with font-awesome or any other icon font library -->
+				<li class="nav-item single-menu">
+					<a href="{{path('bo_teacher')}}" class="nav-link" id="bo-teacher">
+						<i class="nav-icon fas fas fa-edit"></i>
+						<p>
+							Prof
+						</p>
+					</a>
+				</li>
+			</ul>
+			<ul class="nav nav-pills nav-sidebar flex-column">
+				<li class="nav-header">Gestion des authentifications</li>
+				<li class="nav-item single-menu">
+					<a href="{{path('user_list')}}" class="nav-link" id="user-list">
+						<i class="nav-icon fas fa-user"></i>
+						<p>
+							User
+						</p>
+					</a>
+				</li>
+			</ul>
+
+			<ul class="nav nav-pills nav-sidebar flex-column">
+				<li class="nav-header">Gestion des contacts</li>
+				<li class="nav-item single-menu">
+					<a href="{{path('contact_page')}}" class="nav-link" id="contact-page">
+						<i class="nav-icon fas fa-lg fa-phone"></i>
+						<p>
+							Contact
+						</p>
+					</a>
+				</li>
+				<li class="nav-item single-menu">
+					<a href="{{path('contact_page_message')}}" class="nav-link" id="contact-page-message">
+						<i class="nav-icon fas fa-lg fa-envelope"></i>
+						<p>
+							Messages
+						</p>
+					</a>
+				</li>
+			</ul>
+
+			<ul class="nav nav-pills nav-sidebar flex-column">
+				<li class="nav-header">Gestion des images pour les slides</li>
+				<li class="nav-item single-menu">
+					<a href="{{path('bo_carousel')}}" class="nav-link" id="carousel-page">
+						<i class="nav-icon fas fa-lg fa-file"></i>
+						<p>
+							Slides
+						</p>
+					</a>
+				</li>
+				{# <li class="nav-item single-menu" id="chat">
+								            <a href="{{path('my_chat')}}" class="nav-link">
+								              <i class="nav-icon fas fa-envelope"></i>
+								              <p>
+								                Chat
+								              </p>
+								            </a>
+								          </li> #}
+
+
+			</ul>
+
+			<ul class="nav nav-pills nav-sidebar flex-column">
+
+
+				<li class="nav-header">Gestion de tous les etudiants</li>
+				<li class="nav-item single-menu">
+					<a href="{{path('bo_student_class')}}" class="nav-link" id="bo-student-class">
+						<i class="nav-icon fas fa-bookmark"></i>
+						<p>
+							Classe
+						</p>
+					</a>
+				</li>
+				<li class="nav-item single-menu">
+					<a href="{{path('bo_student_schedule')}}" class="nav-link" id="bo-student-schedule">
+						<i class="nav-icon fas fa-calendar"></i>
+						<p>
+							Emploi du temps
+						</p>
+					</a>
+				</li>
+				<li class="nav-item single-menu">
+					<a href="{{path('bo_rules')}}" class="nav-link" id="bo-rules">
+						<i class="nav-icon fas fa-th"></i>
+						<p>
+							Reglement intérieur
+						</p>
+					</a>
+				</li>
+				<li class="nav-item single-menu">
+					<a href="{{path('bo_subject')}}" class="nav-link" id="bo-subject">
+						<i class="nav-icon fas fa-folder-open"></i>
+						<p>
+							Matiere
+						</p>
+					</a>
+				</li>
+				<li class="nav-item single-menu">
+					<a href="{{path('bo_lesson')}}" class="nav-link" id="bo-lesson">
+						<i class="nav-icon fas fa-book"></i>
+						<p>
+							Lecon
+						</p>
+					</a>
+				</li>
+				<li class="nav-item single-menu">
+					<a href="{{path('bo_exam')}}" class="nav-link" id="bo-exam">
+						<i class="nav-icon fas fa-question"></i>
+						<p>
+							Examen
+						</p>
+					</a>
+				</li>
+			</ul>
+		</nav>
+		<!-- /.sidebar-menu -->
+	</div>
+	<!-- /.sidebar -->
+</aside>

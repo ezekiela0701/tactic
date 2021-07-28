@@ -1,0 +1,27 @@
+<div class="card card-figure">
+    <figure class="figure">
+        <div class="figure-attachment">
+             
+        </div>
+        <figcaption class="figure-caption">
+            <ul class="list-inline d-flex text-muted mb-0">
+                <li class="list-inline-item text-truncate mr-auto">
+                 {% if app.user %}
+                    <a href="{{ path('generate.exam.file', {'examslug': examslug, 'file': file_name}) }}" target="_blank" class="telecharger">
+                        <span style="margin-right: 5px"><i class="{{ getFileIcon(file_name) }}"></i></span>{{ file_name|length > 35 ? file_name|slice(0, 35) ~ '...' : file_name  }}
+                    </a>
+                 {% else %}
+                    <div class="col-md-12">
+                         <a>
+                            <span style="margin-right: 5px"><i class=""></i></span>{{ file_name|length > 35 ? file_name|slice(0, 35) ~ '...' : file_name  }}
+                        </a>
+                    </div>
+                    
+                    
+                {% endif %}
+                
+                </li>
+            </ul>
+        </figcaption>
+    </figure>
+</div>

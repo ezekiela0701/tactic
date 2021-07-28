@@ -1,0 +1,66 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Hello exam controller!
+{% endblock %}
+
+{% block body %}
+	<section class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item">
+							<a href="{{path('dashboard')}}">Dashboard</a>
+						</li>
+						<li class="breadcrumb-item active">Examen</li>
+					</ol>
+				</div>
+				<div class="col-sm-6">
+					<a class="btn btn-success float-sm-right" href="{{path('bo_exam_create')}}">Ajouter une sujet d'examen</a>
+				</div>
+			</div>
+		</div>
+		<!-- /.container-fluid -->
+	</section>
+	<div class="col-12">
+		<div class="card card-success">
+			<div class="card-header">
+				<h3 class="card-title">Listes des examen enregistrer</h3>
+			</div>
+			<div class="card-body">
+				<table id="schedule" class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<th>Class</th>
+							<th>Matière</th>
+							<th>Trimestre</th>
+							<th>Status</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for exam in exams %}
+							<tr>
+								<td>{{exam.classSchool.name}}</td>
+								<td>{{exam.subject.name}}</td>
+								<td>{{exam.trimester}}</td>
+								<td>{{ include('admin/block/status.html.twig', { 'etat_status': exam.status}) }}</td>
+								<td>
+									<a href="{{ path('bo_exam_edit', {'id': exam.id}) }}" class="btn btn-rounded btn-success" data-toggle="tooltip" data-placement="bottom">
+										<i class="m-r-10 fas fa-edit"></i>
+									</a> &nbsp;&nbsp;&nbsp;
+									<!-- <a href="{{ path('bo_class_delete', {'id': exam.id}) }}" class="btn btn-rounded btn-danger" data-toggle="tooltip" data-placement="bottom">
+										<i class="m-r-10 mdi fas fa-trash"></i>
+									</a> -->
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+{% block javascripts %}
+	{{ include('admin/block/blockjs.datatable.html.twig', { 'table_id': 'schedule', 'targets': 4 }) }}
+{% endblock %}

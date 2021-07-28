@@ -1,0 +1,42 @@
+{% extends 'fo/base.html.twig' %}
+
+{% block title %}Hello ScheduleController!{% endblock %}
+
+{% block body %}
+<br>
+<!-- ======= Team Section ======= -->
+<section id="" class="team section-bg">
+    <div class="container">
+    
+    {% for schedul in schedule %}
+      <div class="section-title">
+        <h2>Emploi du temps de la classe de {{schedul.classschool.slug}}</h2>
+      </div>
+
+      <div class="">
+          <h4>{{schedul.programm|raw}}</h4>         
+        </div>
+            
+    {% endfor %}
+        </div>
+  </section><!-- End Team Section -->
+  <section id="interieurRules" class="team section-bg">
+    <div class="container">
+    
+    {% for rule in rules %}
+    <div class="section-title">
+        <h2>Reglement intérieur</h2>
+        <!-- <p>Voici la liste des professeur au seins du Lycee TacTic</p> -->
+    </div>
+
+      <div class="row">
+              
+        <h4><inner class="html">{{ rule.content|raw }}</inner> </h4>
+                 
+                 
+        </div>
+            
+    {% endfor %}
+    </div>
+  </section>
+{% endblock %}

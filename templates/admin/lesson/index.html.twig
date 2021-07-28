@@ -1,0 +1,73 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Lesson Controller!
+{% endblock %}
+
+{% block body %}
+	<section class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item">
+							<a href="{{path('dashboard')}}">Dashboard</a>
+						</li>
+						<li class="breadcrumb-item active">Lesson</li>
+					</ol>
+				</div>
+				<div class="col-sm-6">
+					<a class="btn btn-success float-sm-right" href="{{path('bo_lesson_create')}}">Ajouter une nouvelle Lecon</a>
+				</div>
+			</div>
+		</div>
+		<!-- /.container-fluid -->
+	</section>
+	<div class="col-12">
+		<div class="card card-success">
+			<div class="card-header">
+				<h3 class="card-title">Les lecon enregistrer</h3>
+			</div>
+			<div class="card-body">
+				<table id="schedule" class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<th>Classe</th>
+							<th>Trimestre</th>
+							<th>Matiere</th>
+							<th>Chapitre</th>
+							<th>Titre</th>
+							<th>slug</th>
+							<th>Status</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for lesson in lessons %}
+							<tr>
+								<td>{{lesson.classSchool.name}}</td>
+								<td>{{lesson.trimester}}</td>
+								<td>{{lesson.subject.name}}</td>
+								<td>{{lesson.chapter}}</td>
+								<td>{{lesson.title}}</td>
+								<td>{{lesson.slug}}</td>
+								<td>{{ include('admin/block/status.html.twig', { 'etat_status': lesson.status}) }}</td>
+								<td>
+									<a href="{{ path('bo_student_schedule_edit', {'id': lesson.id}) }}" class="btn btn-rounded btn-success" data-toggle="tooltip" data-placement="bottom">
+										<i class="m-r-10 fas fa-edit"></i>
+									</a> &nbsp;&nbsp;&nbsp;
+									{# <a href="{{ path('bo_class_delete', {'id': lesson.id}) }}" class="btn btn-rounded btn-danger" data-toggle="tooltip" data-placement="bottom">
+										<i class="m-r-10 mdi fas fa-trash"></i>
+									</a> #}
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+				{# {% include ("admin/contact/form/_formTeacher.html.twig") %}  #}
+			</div>
+		</div>
+	</div>
+{% endblock %}
+{% block javascripts %}
+	{{ include('admin/block/blockjs.datatable.html.twig', { 'table_id': 'schedule', 'targets': 5 }) }}
+{% endblock %}

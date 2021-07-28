@@ -1,0 +1,42 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Hello Controller!{% endblock %}
+{% block stylesheets %}
+  <!-- ckeditor -->
+  <link href="{{ asset('boAsset/ckeditor/theme/css/fonts.css') }}" rel="stylesheet">
+  <link href="{{ asset('boAsset/ckeditor/theme/css/sdk.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+	<section class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item">
+							<a href="{{path('dashboard')}}">Dashboard</a>
+						</li>
+                        <li class="breadcrumb-item">
+							<a href="{{path('bo_student_schedule')}}">Rules</a>
+						</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+		<!-- /.container-fluid -->
+	</section>
+	<div class="col-12">
+		<div class="card card-success">
+			<div class="card-header">
+				<h3 class="card-title">Vos reglement intérieur</h3>
+			</div>
+			<div class="card-body">
+				{% include ("admin/rules/form/_formRules.html.twig") %} 
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascripts %}
+{{ include('admin/block/blockjs.ckeditor.html.twig', {'textarea_id': 'rules_content' }) }}
+{% endblock %}

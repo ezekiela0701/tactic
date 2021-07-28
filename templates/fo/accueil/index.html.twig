@@ -1,0 +1,128 @@
+{% extends 'fo/base.html.twig' %}
+
+{% block title %}Hello AccueilController!{% endblock %}
+
+{% block body %}
+<!-- <br> -->
+{{ render(controller('App\\Controller\\fo\\CarouselController::index')) }}
+<!-- ======= Features Section ======= -->
+  <section class="features">
+    <div class="container">
+
+      <div class="section-title">
+        <h2>Simple présentation</h2>
+        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+      </div>
+      {% for homePresentationList in homePresentationLists %}
+        {% if homePresentationList.svg == 1 or homePresentationList.svg == 3 %}
+           <div class="row" data-aos="fade-up">
+            <div class="col-md-5">
+              {% if homePresentationList.svg == 1 %}
+                <img src="{{asset('foAsset/assets/img/features-1.svg')}}" class="img-fluid" alt="">
+              {% endif %}
+              {% if homePresentationList.svg == 3 %}
+                <img src="{{asset('foAsset/assets/img/features-2.svg')}}" class="img-fluid" alt="">
+              {% endif %}
+              
+            </div>
+            <div class="col-md-7 pt-4">
+             {{homePresentationList.content | raw() }}
+            </div>
+          </div>
+
+        {% else %}
+          <div class="row" data-aos="fade-up">
+            <div class="col-md-5  order-md-2">
+            {% if homePresentationList.svg == 2 %}
+                <img src="{{asset('foAsset/assets/img/features-3.svg')}}" class="img-fluid" alt="">
+              {% endif %}
+              {% if homePresentationList.svg == 4 %}
+                <img src="{{asset('foAsset/assets/img/features-4.svg')}}" class="img-fluid" alt="">
+              {% endif %}
+            </div>
+            <div class="col-md-7 pt-5 order-2 order-md-1">
+              {{homePresentationList.content | raw() }}
+            </div>
+          </div>
+
+        {% endif %}
+
+
+      {% endfor %}
+
+  </section><!-- End Features Section -->
+
+
+
+<!-- ======= Testimonials Section ======= -->
+    <div class="testimonials-area">
+      <div class="testi-inner area-padding">
+        <div class="testi-overly"></div>
+        <div class="container ">
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <!-- Start testimonials Start -->
+              <div class="testimonial-content text-center">
+                <a class="quate" href="#"><i class="fa fa-quote-right"></i></a>
+                <!-- start testimonial carousel -->
+                <div class="owl-carousel testimonial-carousel">
+                  <div class="single-testi">
+                    <div class="testi-text">
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pulvinar luctus est eget congue.<br>consectetur adipiscing elit. Sed pulvinar luctus est eget congue.
+                      </p>
+                      <h6>Boby</h6>
+                    </div>
+                  </div>
+                  <!-- End single item -->
+                  <div class="single-testi">
+                    <div class="testi-text">
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pulvinar luctus est eget congue.<br>consectetur adipiscing elit. Sed pulvinar luctus est eget congue.
+                      </p>
+                      <h6>Jhon</h6>
+                    </div>
+                  </div>
+                  <!-- End single item -->
+                  <div class="single-testi">
+                    <div class="testi-text">
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pulvinar luctus est eget congue.<br>consectetur adipiscing elit. Sed pulvinar luctus est eget congue.
+                      </p>
+                      <h6>Fleming</h6>
+                    </div>
+                  </div>
+                  <!-- End single item -->
+                </div>
+              </div>
+              <!-- End testimonials end -->
+            </div>
+            <!-- End Right Feature -->
+          </div>
+        </div>
+      </div>
+    </div><!-- End Testimonials Section -->
+
+    
+<!-- ======= Gallery Section ======= -->
+    <section id="gallery">
+
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Evennement</h2>
+          <p>Listes de tous les évennements au sein du lycée Tactic</p>
+        </div>
+      </div>
+
+      <div class="owl-carousel gallery-carousel" data-aos="fade-up" data-aos-delay="100">
+        {% for hommeGalleryList in homegalleryLists %}
+          <a href="{{asset('images/uploads/imggalleryaccueil/'~ hommeGalleryList.file)}}" class="venobox" data-gall="gallery-carousel"><img src="{{asset('images/uploads/imggalleryaccueil/'~ hommeGalleryList.file)}}" alt="" height ="150vh" ></a>
+        {% endfor %}
+       
+      </div>
+
+    </section>
+<!-- End Gallery Section -->
+
+
+{% endblock %}

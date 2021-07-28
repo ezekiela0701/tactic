@@ -1,0 +1,109 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Hello Controller!{% endblock %}
+{% block stylesheets %}
+  <!-- ckeditor -->
+  <link href="{{ asset('boAsset/ckeditor/theme/css/fonts.css') }}" rel="stylesheet">
+  <link href="{{ asset('boAsset/ckeditor/theme/css/sdk.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+	<section class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item">
+							<a href="{{path('dashboard')}}">Dashboard</a>
+						</li>
+                        <li class="breadcrumb-item">
+							<a href="{{path('bo_lesson')}}">Lesson</a>
+						</li>
+						{# {% if editMode %}	
+							<li class="breadcrumb-item active">Edit</li>	
+						{% else %}					 #}
+							<li class="breadcrumb-item active">New</li>
+						{# {% endif %} #}
+					</ol>
+				</div>
+				<div class="col-sm-6">
+					<a class="btn btn-success float-sm-right" href="{{path('bo_lesson')}}">Retour</a>
+				</div>
+			</div>
+		</div>
+		<!-- /.container-fluid -->
+	</section>
+	<div class="col-12">
+		<div class="card card-success">
+			<div class="card-header">
+				<h3 class="card-title">Ajouter une nouvelle Lecon</h3>
+			</div>
+			<div class="card-body">
+				{% include ("admin/lesson/form/_formLesson.html.twig") %} 
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascripts %}
+{{ include('admin/block/blockjs.ckeditor.html.twig', {'textarea_id': 'schedule_programm' }) }}
+<script>
+	$('#classschool').change(function() {
+            $('.div-container-loader').fadeIn(0);
+
+            var idclassschool = $("#classschool").val();
+            $.ajax({
+                type: 'GET',
+                url: '{{ path("getsubjectperclass") }}',
+                data: {
+                    'idclassschool': idclassschool
+                },
+                success: function (data) {
+                    var subjects = $('#subjects');
+                    subjects.empty();
+					subjects.append('<option value="" disabled selected>Matiere</option>');
+                    for (var i = 0; i < data.length; i++) {
+                        subjects.append('<option value=' + data[i].id + '>' + data[i].name + '</option>');
+                    }
+
+                    subjects.change();
+
+                    $('.div-container-loader').fadeOut(300);
+                },
+                error: function() {
+                    $('.div-container-loader').fadeOut(300);
+                    alert("Erreur!");
+                }
+            });
+
+    });
+
+    $('#lesson_document').fileinput({
+        theme: 'fas',
+        language: 'fr',
+        uploadUrl: '',
+        allowedFileExtensions: ['pdf', 'doc', 'docx', 'txt' , 'csv' , 'xls' , 'xlsx' ],
+        showUpload: false,
+        showCaption: true,
+        showCancel: true,
+        showUploadedThumbs: true,
+        showRemove: true,
+        showPreview: true,
+        maxFileSize: 80000 ,
+    });
+    
+    $('#lesson_videos').fileinput({
+        theme: 'fas',
+        language: 'fr',
+        uploadUrl: '',
+        allowedFileExtensions: ['mp4', 'avi', '3gp' , 'mkv' ],
+        showUpload: false,
+        showCaption: true,
+        showCancel: true,
+        showUploadedThumbs: true,
+        showRemove: true,
+        showPreview: true,
+        maxFileSize: 120000 ,
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,49 @@
+{{ form_start(form_teacher) }}
+
+    <div class="form-group mt-4">
+        {{ form_row(form_teacher.name) }}
+    </div>
+     <div class="form-group mt-4">
+        {{ form_row(form_teacher.subject) }}
+    </div>
+    {% if(editMode) %}
+
+    <div class="col-md-12 col-sm-12">
+                                            <div class="row">
+
+                                                {% for teacher in teacher %}
+                                                    <div class="col-md-3 col-sm-12">
+                                                        <div class="card card-figure">
+                                                            <figure class="figure">
+                                                                <figcaption class="figure-caption">
+                                                                    <ul class="list-inline text-muted mb-0">
+                                                                        <li class="list-inline-item text-truncate mr-auto">
+                                                                            <img src="{{ asset('images/uploads/imgteacher/' ~ teacher.photos) }}" alt="Card image cap" class="img-fluid">
+                                                                        </li>
+                                                                       {#<li class="list-inline-item">
+                                                                            {% if  property.propertyImages|length > 1 %}
+                                                                            <a href="#" class="btn btnremove" id="removeimage_{{ image.id }}" onclick="javascript:supprimerimage(this.id)"><i class="fas fa-trash text-danger"></i></a>
+                                                                            {% endif %}
+                                                                            <a href="{{ path('editimage' , {'id': image.id}) }}" title="Retoucher" class="btn btnretouche">
+                                                                                <i class="fas fa-pencil-alt text-white"></i>
+                                                                            </a>
+                                                                        </li> #}
+                                                                    </ul>
+                                                                </figcaption>
+                                                             </figure>
+                                                        </div>
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                        {% endif %}
+
+     <div class="form-group mt-4">
+        {{ form_row(form_teacher.photos) }}
+    </div>
+    <div class="form-group mt-4">
+        <div class="col-lg-6 offset-3">
+        <button type="submit" class="btn btn-primary btn-block">Ajouter dans la liste</button>
+    </div>
+
+{{ form_end(form_teacher) }}

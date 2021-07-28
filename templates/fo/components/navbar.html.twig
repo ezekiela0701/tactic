@@ -1,0 +1,42 @@
+ <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo mr-auto"><a href="{{path('fo_accueil')}}">Lycee TicTac</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li class="single-menu">
+            <a href="{{path('fo_accueil')}}" id="homepage">Accueil</a>
+          </li>
+          <li class="single-menu">
+            <a href="{{path('fo_teacher')}}" id="fo-teacher">Profs</a>
+          </li>
+          {% if app.user %}
+            <li class="single-menu">
+              <a href="{{path('fo_schedule')}}" id="fo-schedule">Emploie du temps</a>
+            </li>
+            <li class="single-menu">
+              <a href="#interieurRules" id="interieur-rules">Reglement interieur</a>
+            </li>
+            <li class="single-menu">
+              <a href="{{path('subject_fo')}}" id="fo-subject">Matiere</a>
+            </li>
+            <li class="single-menu">
+              <a href="{{path('exam_fo')}}" id="fo-subject">Examen</a>
+            </li>
+          {% endif %}
+            <li class="single-menu">
+              <a href="{{path('contact_fo')}}" id="fo-contact">Contact</a>
+            </li>
+        </ul>
+      </nav><!-- .nav-menu -->
+
+      {% if app.user %}
+          <a href="{{path('app_logout_client')}}" class="get-started-btn scrollto">Deconnexion</a>
+      {% else %}
+          <a href="{{path('app_login_client')}}" class="get-started-btn scrollto">Connexion</a>
+      {% endif %}
+    </div>
+  </header>

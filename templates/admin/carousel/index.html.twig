@@ -1,0 +1,63 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Carousel controller
+{% endblock %}
+
+{% block body %}
+	<section class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item">
+							<a href="{{path('dashboard')}}">Dashboard</a>
+						</li>
+						<li class="breadcrumb-item active">Slide</li>
+					</ol>
+				</div>
+				<div class="col-sm-6">
+					<a class="btn btn-success float-sm-right" href="{{path('bo_carousel_add')}}">Ajouter un nouveau slide</a>
+				</div>
+			</div>
+		</div>
+		<!-- /.container-fluid -->
+	</section>
+	<div class="col-12">
+		<div class="card card-success">
+			<div class="card-header">
+				<h3 class="card-title">Listes des slides enregistrer</h3>
+			</div>
+			<div class="card-body">
+				<table id="schedule" class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<th>Image</th>
+							<th>Titre</th>
+							<th>Description</th>
+							<th>Status</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for listeCarousel in listeCarousels %}
+							<tr>
+								<td>{{listeCarousel.image}}</td>
+								<td>{{listeCarousel.title}}</td>
+								<td>{{listeCarousel.description}}</td>
+								<td>{{ include('admin/block/status.html.twig', { 'etat_status': listeCarousel.status}) }}</td>
+								<td>
+									<a href="{{ path('bo_carousel_edit', {'id': listeCarousel.id}) }}" class="btn btn-rounded btn-success" data-toggle="tooltip" data-placement="bottom">
+										<i class="m-r-10 fas fa-edit"></i>
+									</a> &nbsp;&nbsp;&nbsp;
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+{% block javascripts %}
+	{{ include('admin/block/blockjs.datatable.html.twig', { 'table_id': 'schedule', 'targets': 4 }) }}
+{% endblock %}

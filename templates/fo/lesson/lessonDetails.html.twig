@@ -1,0 +1,86 @@
+{% extends 'fo/base.html.twig' %}
+
+{% block title %}Lesson controller
+{% endblock %}
+
+{% block body %}
+	{{ render(controller('App\\Controller\\fo\\CarouselController::index')) }}
+	<!-- =======  Lesson Section ======= -->
+	<section id="faq">
+		<div class="row no-gutters">
+			<div class="col-lg-4 col-md-6">
+				<div class="container" data-aos="fade-up">
+
+
+					<div class="row justify-content-center" data-aos="fade-up" data-aos-delay="100">
+						<div class="col-lg-9">
+							<ul id="faq-list">
+
+								{% for lessonPerChapter in lessonPerChapters %}
+
+
+									<li id="{{lessonPerChapter.id}}">
+										<a data-toggle="collapse" class="collapsed" href="#block{{lessonPerChapter.id}}">Chapitre
+											{{lessonPerChapter.chapter}}
+											<i class="fa fa-minus-circle"></i>
+										</a>
+										<div id="block{{lessonPerChapter.id}}" class="collapse" data-parent="#faq-list">
+
+											{% for lesson in lessons %}
+												<script></script>
+												{% if lesson.chapter == lessonPerChapter.chapter %}
+
+													<a id="{{lesson.id}}" href="{{path("fo_lesson_detail",{'lessonslug': lesson.subject.slug , 'lessonslugdetail':lesson.slug}) }}">{{lesson.title}}</a>
+
+												{% endif %}
+
+											{% endfor %}
+
+										</div>
+									</li>
+
+								{% endfor %}
+
+
+							</ul>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			{% if lessonDetails is empty %}
+				<div class="col-lg-8 col-md-6">
+					<h1>Aucune leçon pour le moment</h1>
+				</div>
+			{% else %}
+				<div class="col-lg-8 col-md-6" id="{{lessonDetails[0].id}}">
+					<h1>{{lessonDetails[0].chapter}}
+						:
+						{{lessonDetails[0].title}}</h1>
+					<div class="row">
+						{% for filedoc in lessonDetails[0].Documents %}
+							<div
+								class="col-lg-6 col-md-6">
+								{# <a href="{{asset('documents/lesson/'~filedoc.file)}}">test
+																                        </a> #}
+								<h4>
+									Telecharger vos fichier içi</h4>
+								{# <i class="far fa-calendar"></i> #}
+								{{ include('fo/blocks/fileCard.html.twig', { 'file_name': filedoc.file, 'lessonslug': lessonDetails[0].slug }) }}
+
+							</div>
+						{% endfor %}
+					</div>
+					<br><br>
+					<h4>
+						Telecharger le vidéos içi</h4>
+					{% for video in lessonDetails[0].videosLessons %}
+						<video src="{{asset('videos/lesson/'~video.file)}}" controls></video>
+					{% endfor %}
+				</div>
+			{% endif %}
+
+		</div>
+
+
+	{% endblock %}

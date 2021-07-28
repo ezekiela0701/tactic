@@ -1,0 +1,58 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Message from contact
+{% endblock %}
+
+{% block body %}
+	<section class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item">
+							<a href="{{path('dashboard')}}">Dashboard</a>
+						</li>
+						<li class="breadcrumb-item active">Message</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+		<!-- /.container-fluid -->
+	</section>
+	<div class="col-12">
+		<div class="card card-success">
+			<div class="card-header">
+				<h3 class="card-title">Listes des messages envoyer par les visiteurs</h3>
+			</div>
+			<div class="card-body">
+				<table id="teacherlist" class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<th>creer le</th>
+							<th>Nom et Prénom</th>
+							<th>Téléphone</th>
+							<th>Sujet</th>
+							<th>Message</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for messageList in messageLists %}
+							<tr>
+								<td>{{messageList.created | date('d-F-Y')}}</td>
+								<td>{{messageList.name}}</td>
+								<td>{{messageList.telephone}}</td>
+								<td>{{messageList.subject}}</td>
+								<td>{{messageList.message}}</td>
+								
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+				{# {% include ("admin/contact/form/_formTeacher.html.twig") %} #}
+			</div>
+		</div>
+	</div>
+{% endblock %}
+{% block javascripts %}
+	{{ include('admin/block/blockjs.datatable.html.twig', { 'table_id': 'teacherlist', 'targets': 3 }) }}
+{% endblock %}

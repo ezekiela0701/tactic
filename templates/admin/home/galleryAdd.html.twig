@@ -1,0 +1,70 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Hello TeacherController!{% endblock %}
+{% block stylesheets %}
+{% endblock %}
+
+{% block body %}
+	<section class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item">
+							<a href="{{path('dashboard')}}">Dashboard</a>
+						</li>
+                        <li class="breadcrumb-item">
+							<a href="{{path('bo_galery_List')}}">Gallery</a>
+						</li>
+						{% if editMode %}	
+							<li class="breadcrumb-item active">Edit</li>	
+						{% else %}					
+							<li class="breadcrumb-item active">New</li>
+						{% endif %}
+					</ol>
+				</div>
+				<div class="col-sm-6">
+					<a class="btn btn-success float-sm-right" href="{{path('bo_galery_List')}}">Retour</a>
+				</div>
+			</div>
+		</div>
+		<!-- /.container-fluid -->
+	</section>
+	<div class="col-12">
+		<div class="card card-success">
+			<div class="card-header">
+				{% if editMode %}
+					<h3 class="card-title">Modifier l'image</h3>
+				{% else %}
+					<h3 class="card-title">Ajouter une nouvelle image</h3>
+				{% endif %}
+				
+			</div>
+			<div class="card-body">
+                {% if editMode %}
+                    <img src ="{{asset('images/uploads/imggalleryaccueil/'~ homeGallery.file)}}" width="100px" >
+                {% endif %}
+                
+				{% include ("admin/home/form/_formGallery.html.twig") %} 
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+  $('#home_gallery_file').fileinput({
+        theme: 'fas',
+        language: 'fr',
+        uploadUrl: '',
+        {# allowedFileExtensions: ['pdf', 'doc', 'docx', 'txt' , 'csv' , 'xls' , 'xlsx' ], #}
+        showUpload: false,
+        showCaption: true,
+        showCancel: true,
+        showUploadedThumbs: true,
+        showRemove: true,
+        showPreview: true,
+        maxFileSize: 80000 ,
+    });
+</script>  
+{% endblock %}
